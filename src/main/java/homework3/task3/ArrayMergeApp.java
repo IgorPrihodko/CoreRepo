@@ -24,14 +24,12 @@ public class ArrayMergeApp {
             }
             k++;
         }
-        while (i < arr1.length)
-        {
+        while (i < arr1.length) {
             resArr[k] = arr1[i];
             i++;
             k++;
         }
-        while (j < arr2.length)
-        {
+        while (j < arr2.length) {
             resArr[k] = arr2[j];
             j++;
             k++;

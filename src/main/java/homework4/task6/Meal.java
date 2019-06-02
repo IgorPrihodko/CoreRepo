@@ -2,32 +2,26 @@ package homework4.task6;
 
 public class Meal {
 
-    private String drink;
-    private String mainCourse;
-    private String side;
+    private final String drink;
+    private final String mainCourse;
+    private final String side;
 
     public String getDrink() {
         return drink;
-    }
-
-    public void setDrink(String drink) {
-        this.drink = drink;
     }
 
     public String getMainCourse() {
         return mainCourse;
     }
 
-    public void setMainCourse(String mainCourse) {
-        this.mainCourse = mainCourse;
-    }
-
     public String getSide() {
         return side;
     }
 
-    public void setSide(String side) {
-        this.side = side;
+    public Meal(Builder builder) {
+        drink = builder.drink;
+        mainCourse  = builder.mainCourse;
+        side = builder.side;
     }
 
     @Override
@@ -37,5 +31,29 @@ public class Meal {
                 ", mainCourse='" + mainCourse + '\'' +
                 ", side='" + side + '\'' +
                 '}';
+    }
+
+    public static class Builder {
+        private String drink;
+        private String mainCourse;
+        private String side;
+
+        public Builder setDrink(String drink) {
+            this.drink = drink;
+            return this;
+        }
+
+        public Builder setMainCourse(String mainCourse) {
+            this.mainCourse = mainCourse;
+            return this;
+        }
+
+        public Builder setSide(String side) {
+            this.side = side;
+            return this;
+        }
+        public Meal buildMeal() {
+            return new Meal(this);
+        }
     }
 }

@@ -1,6 +1,6 @@
 package homework4.task4;
 
-public class CheckLabelsMethod {
+public class CheckLabels {
 
     public Label checkLabels(TextAnalyzer[] analyzers, String text) {
         for (TextAnalyzer analyzer : analyzers) {

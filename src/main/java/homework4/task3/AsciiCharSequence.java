@@ -13,7 +13,7 @@ public class AsciiCharSequence implements CharSequence {
     }
 
     public char charAt(int index) {
-        return (char)(mass[index] & 0xff);
+        return (char)mass[index];
     }
 
     public CharSequence subSequence(int start, int end) {

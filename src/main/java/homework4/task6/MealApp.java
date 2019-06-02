@@ -1,11 +1,9 @@
 package homework4.task6;
 
 public class MealApp {
-    public static void main(String[] args) {
 
-        Meal firstPerson = new MealDirector(new JapaneseMealBuilder()).costructMeal().getMeal();
-        Meal secondherson = new MealDirector(new ItalianMealBuilder()).costructMeal().getMeal();
-        System.out.println("First: " + firstPerson);
-        System.out.println("Second: " + secondherson);
+    public static void main(String[] args) {
+        Meal meal = new Meal.Builder().setSide("icecream").setDrink("juice").setMainCourse("fish").buildMeal();
+        System.out.println(meal);
     }
 }

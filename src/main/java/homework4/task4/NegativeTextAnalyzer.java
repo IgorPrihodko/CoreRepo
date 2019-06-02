@@ -4,6 +4,7 @@ class NegativeTextAnalyzer extends KeywordAnalyzer {
 
     private String[] keywords = {":(", "=(", ":|"};
     private Label label = Label.NEGATIVE_TEXT;
+
     @Override
     public String[] getKeywords() {
         return keywords;

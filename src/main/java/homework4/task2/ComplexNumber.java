@@ -26,12 +26,17 @@ public class ComplexNumber {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         ComplexNumber that = (ComplexNumber) o;
 
-        if (Double.compare(that.getRe(), getRe()) != 0) return false;
+        if (Double.compare(that.getRe(), getRe()) != 0) {
+            return false;
+        }
         return Double.compare(that.getIm(), getIm()) == 0;
     }
 

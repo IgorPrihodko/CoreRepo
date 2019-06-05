@@ -11,31 +11,17 @@ class Pair <K, V> {
     }
 
     private Pair() {
-        this.key = null;
-        this.value = null;
     }
 
-    private static <K, V> Pair <K, V> of(K key, V value) {
-        if (key != null && value != null) {
+    public static <K, V> Pair of(K key, V value) {
             return new Pair<>(key, value);
-        } else {
-            return new Pair<>(null, null);
-        }
     }
 
-    private K getFirst() {
-        if (key != null) {
+    public K getFirst() {
             return key;
-        } else {
-            return null;
-        }
     }
-    private V getSecond() {
-        if (value != null) {
+    public V getSecond() {
             return value;
-        } else {
-            return null;
-        }
     }
 
     @Override
@@ -57,6 +43,7 @@ class Pair <K, V> {
     }
 
     public static void main(String[] args) {
+        /*task for test fron stepik*/
         Pair<Integer, String> pair = Pair.of(1, "hello");
         Integer i = pair.getFirst(); // 1
         String s = pair.getSecond(); // "hello"

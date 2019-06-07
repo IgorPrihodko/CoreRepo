@@ -1,24 +1,19 @@
 package homework7.task2;
-/*Создайте хранилище типа КЛЮЧ - ЗНАЧЕНИЕ, которое параметризируется 2-умя типами данных,
-     и в этом хранилище можо класть значение по ключу и доставать значение по ключу.
-  Пример: Storage<Integer, Box> storage = new Storage<>();  storage.put(22, box); storage.get(22) // вернёт коробку.*/
-public class MapStorage {
 
-    private int key;
-    private String value;
-    private int[] keyArr;
+public class MapStorage <Integer, String> {
+    private Integer[] keyArr;
     private String[] valueArr;
 
-    private MapStorage() {
+    MapStorage() {
     }
 
-    private void setNewObject(int key, String value) {
+    public void setNewObject(Integer key, String value) {
         if (keyArr == null && valueArr == null) {
             keyArr = newArrInt(keyArr);
             valueArr = newArrString(valueArr);
         }
         for (int i = 0; i < keyArr.length; i++) {
-            if (keyArr[i] == 0 && valueArr[i] == null) {
+            if (keyArr[i] == null && valueArr[i] == null) {
                 keyArr[i] = key;
                 valueArr[i] = value;
                 return;
@@ -33,27 +28,29 @@ public class MapStorage {
         }
     }
 
-    private static int[] newArrInt(int[] oldArr) {
+    public Integer[] newArrInt(Integer[] oldArr) {
         if (oldArr == null) {
-            return new int[10];
+            Integer[] newArr = (Integer[]) new Object[10];
+            return newArr;
         } else {
-            int[] newArr = new int[oldArr.length * 2 + 1];
+            Integer[] newArr = (Integer[]) new Object[oldArr.length * 2 + 1];
             System.arraycopy(oldArr, 0, newArr, 0, oldArr.length);
             return newArr;
         }
     }
 
-    private static String[] newArrString(String[] oldArr) {
+    public String[] newArrString(String[] oldArr) {
         if (oldArr == null) {
-            return new String[10];
+            String[] newArr = (String[]) new Object[10];
+            return newArr;
         } else {
-            String [] newArr = new String[oldArr.length * 2 + 1];
+            String [] newArr = (String[]) new Object[oldArr.length * 2 + 1];
             System.arraycopy(oldArr, 0, newArr, 0, oldArr.length);
             return newArr;
         }
     }
 
-    private String get(int key) {
+    public String get(Integer key) {
         String value = null;
         for (int i = 0; i < keyArr.length; i++) {
             if (key == keyArr[i])
@@ -62,7 +59,7 @@ public class MapStorage {
         return value;
     }
 
-    private void put(int key, String value) {
+    public void put(Integer key, String value) {
         for (int i = 0; i < keyArr.length; i++) {
             if (keyArr[i] == key) {
                 valueArr[i] = value;
@@ -70,7 +67,9 @@ public class MapStorage {
             }
         }
     }
+}
 
+class Main {
     public static void main(String[] args) {
         MapStorage mapStorage = new MapStorage();
         mapStorage.setNewObject(12, "Got it!");
@@ -79,6 +78,5 @@ public class MapStorage {
         mapStorage.put(10, "Bad");
         System.out.println(mapStorage.get(12));
         System.out.println(mapStorage.get(10));
-
     }
 }

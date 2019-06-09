@@ -1,8 +1,8 @@
 package homework6.task3;
 
-import homework6.task2.CarCloneApp;
+import homework6.task2.Car;
+import homework6.task2.Weel;
 
-/*реализуйте метод deepClone который принимает объект любого класса и возвращает глубокую копию этого класса*/
 public class AnyObjectDeepCloneApp implements Cloneable {
 
     private Object inputObject;
@@ -29,7 +29,8 @@ public class AnyObjectDeepCloneApp implements Cloneable {
     }
 
     public static void main(String[] args) throws CloneNotSupportedException {
-        AnyObjectDeepCloneApp car = new AnyObjectDeepCloneApp(new CarCloneApp("red", "disel"));
+        AnyObjectDeepCloneApp car = new AnyObjectDeepCloneApp(new Car("red", "disel",
+                new Weel("hz", "big")));
         AnyObjectDeepCloneApp copy = (AnyObjectDeepCloneApp)car.clone();
         System.out.println(car.getInputObject().equals(copy.inputObject));
     }

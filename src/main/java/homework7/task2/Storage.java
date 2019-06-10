@@ -76,5 +76,6 @@ public class Storage <K, V> {
         Storage.put(10, "Bad, come on");
         System.out.println(Storage.get(12));
         System.out.println(Storage.get(10));
+        Storage.setNewObject(14, "Hi!");
     }
 }

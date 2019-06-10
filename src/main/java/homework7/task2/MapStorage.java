@@ -17,13 +17,11 @@ public class MapStorage <Integer, String> {
                 keyArr[i] = key;
                 valueArr[i] = value;
                 return;
-            }
-            if (i == keyArr.length - 1) {
+            } else if (i == keyArr.length - 1) {
                 keyArr = newArrInt(keyArr);
                 valueArr = newArrString(valueArr);
                 keyArr[i + 1] = key;
                 valueArr[i + 1] = value;
-
             }
         }
     }
@@ -78,5 +76,6 @@ class Main {
         mapStorage.put(10, "Bad");
         System.out.println(mapStorage.get(12));
         System.out.println(mapStorage.get(10));
+        mapStorage.setNewObject(15, "hi!");
     }
 }

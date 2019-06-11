@@ -1,55 +1,50 @@
 package homework7.task2;
 
-public class MapStorage <Integer, String> {
-    private Integer[] keyArr;
-    private String[] valueArr;
+import java.util.Arrays;
 
-    MapStorage() {
+public class MapStorage <K, V> {
+    private K[] keyArr;
+    private V[] valueArr;
+    private int size;
+    private final int DEFAULT_CAPACITY = 10;
+
+    public MapStorage() {
+        this.keyArr = (K[]) new Object[DEFAULT_CAPACITY];
+        this.valueArr = (V[]) new Object[DEFAULT_CAPACITY];
     }
 
-    public void setNewObject(Integer key, String value) {
-        if (keyArr == null && valueArr == null) {
-            keyArr = newArrInt(keyArr);
-            valueArr = newArrString(valueArr);
+    public void setNewObject(K key, V value) {
+        if (keyArr.length == size && valueArr.length == size) {
+            keyArr = newArrK(keyArr);
+            valueArr = newArrV(valueArr);
         }
-        for (int i = 0; i < keyArr.length; i++) {
-            if (keyArr[i] == null && valueArr[i] == null) {
-                keyArr[i] = key;
-                valueArr[i] = value;
-                return;
-            } else if (i == keyArr.length - 1) {
-                keyArr = newArrInt(keyArr);
-                valueArr = newArrString(valueArr);
-                keyArr[i + 1] = key;
-                valueArr[i + 1] = value;
-            }
-        }
+        keyArr[size] = key;
+        valueArr[size] = value;
+        size++;
     }
 
-    public Integer[] newArrInt(Integer[] oldArr) {
+    public K[] newArrK(K[] oldArr) {
         if (oldArr == null) {
-            Integer[] newArr = (Integer[]) new Object[10];
-            return newArr;
+            return (K[]) new Object[DEFAULT_CAPACITY];
         } else {
-            Integer[] newArr = (Integer[]) new Object[oldArr.length * 2 + 1];
+            K[] newArr = (K[]) new Object[oldArr.length * 2 + 1];
             System.arraycopy(oldArr, 0, newArr, 0, oldArr.length);
             return newArr;
         }
     }
 
-    public String[] newArrString(String[] oldArr) {
+    public V[] newArrV(V[] oldArr) {
         if (oldArr == null) {
-            String[] newArr = (String[]) new Object[10];
-            return newArr;
+            return (V[]) new Object[DEFAULT_CAPACITY];
         } else {
-            String [] newArr = (String[]) new Object[oldArr.length * 2 + 1];
+            V[] newArr = (V[]) new Object[oldArr.length * 2 + 1];
             System.arraycopy(oldArr, 0, newArr, 0, oldArr.length);
             return newArr;
         }
     }
 
-    public String get(Integer key) {
-        String value = null;
+    public V get(K key) {
+        V value = null;
         for (int i = 0; i < keyArr.length; i++) {
             if (key == keyArr[i])
                 value = valueArr[i];
@@ -57,13 +52,22 @@ public class MapStorage <Integer, String> {
         return value;
     }
 
-    public void put(Integer key, String value) {
+    public void put(K key, V value) {
         for (int i = 0; i < keyArr.length; i++) {
             if (keyArr[i] == key) {
                 valueArr[i] = value;
                 return;
             }
         }
+    }
+
+    @Override
+    public String toString() {
+        return "MapStorage{" +
+                "keyArr=" + Arrays.toString(keyArr) +
+                ", valueArr=" + Arrays.toString(valueArr) +
+                ", size=" + size +
+                '}';
     }
 }
 
@@ -77,5 +81,6 @@ class Main {
         System.out.println(mapStorage.get(12));
         System.out.println(mapStorage.get(10));
         mapStorage.setNewObject(15, "hi!");
+        System.out.println(mapStorage.get(15));
     }
 }

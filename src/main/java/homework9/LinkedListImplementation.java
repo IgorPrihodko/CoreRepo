@@ -1,6 +1,5 @@
 package homework9;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class LinkedListImplementation <T> {
@@ -8,47 +7,37 @@ public class LinkedListImplementation <T> {
     private Node<T> last;
     private int size;
 
-    public LinkedListImplementation() {
+    LinkedListImplementation() {
         this.size = 0;
     }
 
     private static class Node<T> {
-        Node<T> previous;
-        T item;
-        Node<T> next;
+        private Node<T> previous;
+        private T item;
+        private Node<T> next;
 
-        public Node(Node<T> previous, T item, Node<T> next) {
+        Node(Node<T> previous, T item, Node<T> next) {
             this.previous = previous;
             this.item = item;
             this.next = next;
         }
     }
 
-    public void linkFirst(T node) {
-        Node<T> f = first;
-        Node<T> newNode = new Node<>(null, node, first);
+    private void linkFirst(T value) {
+        Node<T> newNode = new Node<>(null, value, null);
         first = newNode;
-        if(f == null) {
-            last = newNode;
-        } else {
-            f.previous = newNode;
-        }
+        last = first;
         size++;
     }
 
-    public void linkLast(T node) {
-        Node<T> l = last;
-        Node<T> newNode = new Node<>(last, node, null);
+    private void linkLast(T value) {
+        Node<T> newNode = new Node<>(last, value, null);
+        last.next = newNode;
         last = newNode;
-        if (l == null) {
-            first = newNode;
-        } else {
-            l.next = newNode;
-        }
         size++;
     }
 
-    public int size() {
+    int size() {
         if (first == null && last == null) {
             size = 0;
         } else {
@@ -65,7 +54,7 @@ public class LinkedListImplementation <T> {
         return size() == 0;
     }
 
-    public void add(T value) {
+    void add(T value) {
         if (first == null) {
             linkFirst(value);
         } else {
@@ -73,16 +62,13 @@ public class LinkedListImplementation <T> {
         }
     }
 
-    public void add(T value, int index) {
+    void add(T value, int index) {
         if (index > size || index < 0) {
             System.out.println("Wrong index. Need 0 <= index <= size");
         } else if (index == size) {
             add(value);
         } else {
-            Node<T> currentNode = last;
-            for (int i = size - 1; i > index; i--) {
-                currentNode = currentNode.previous;
-            }
+            Node<T> currentNode = getNode(index);
             Node<T> preNode = currentNode.previous;
             Node<T> newNode = new Node<>(preNode, value, currentNode);
             currentNode.previous = newNode;
@@ -95,13 +81,13 @@ public class LinkedListImplementation <T> {
         size++;
     }
 
-    public void addAll(List<T> list) {
+    void addAll(List<T> list) {
         for (T node: list) {
             linkLast(node);
         }
     }
 
-    public T get(int index) {
+    T get(int index) {
         if (index >= 0 && index < size) {
             if (index <= (size / 2)) {
                 Node<T> currentNode = first;
@@ -122,7 +108,7 @@ public class LinkedListImplementation <T> {
         return null;
     }
 
-    public Node<T> getNode(int index) {
+    private Node<T> getNode(int index) {
         if (index >= 0 && index < size) {
             if (index < (size / 2)) {
                 Node<T> node = first;
@@ -145,7 +131,7 @@ public class LinkedListImplementation <T> {
         getNode(index).item = value;
     }
 
-    public T remove(int index) {
+    T remove(int index) {
         T delItem;
         Node<T> currentNode = getNode(index);
         Node<T> preNode = currentNode.previous;
@@ -154,25 +140,19 @@ public class LinkedListImplementation <T> {
         afterNode.previous = preNode;
         size--;
         delItem = currentNode.item;
+        currentNode = null;
         return delItem;
     }
 
     public T remove(T t) {
         Node<T> currentNode = first;
-        T delItem;
         for (int i = 0; i < size; i++) {
             currentNode = currentNode.next;
-            if (currentNode.item == t) {
-                Node<T> preNode = currentNode.previous;
-                Node<T> afterNode = currentNode.next;
-                preNode.next = afterNode;
-                afterNode.previous = preNode;
-                size--;
-                delItem = currentNode.item;
-                return delItem;
+            if (currentNode.item.equals(t)) {
+                remove(i);
             }
         }
-        return t;
+        return null;
     }
 
     @Override
@@ -182,28 +162,5 @@ public class LinkedListImplementation <T> {
                 ", last=" + last +
                 ", size=" + size +
                 '}';
-    }
-
-    public static void main(String[] args) {
-        List<Integer> list = new ArrayList<>();
-        list.add(11);
-        list.add(22);
-        list.add(33);
-        LinkedListImplementation implementation = new LinkedListImplementation();
-        implementation.add(5);
-        System.out.println(implementation.get(0).toString());
-        implementation.add(13);
-        System.out.println(implementation.get(1).toString());
-        implementation.add(2);
-        System.out.println(implementation.get(2).toString());
-        implementation.add(111, 2);
-        System.out.println(implementation.get(2).toString());
-        implementation.add(444, 2);
-        System.out.println(implementation.get(3).toString());
-        System.out.println(implementation.get(4).toString());
-        System.out.println("Size : " + implementation.size());
-        implementation.addAll(list);
-        System.out.println(implementation.get(7).toString());
-
     }
 }

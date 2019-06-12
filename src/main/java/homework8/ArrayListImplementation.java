@@ -50,7 +50,7 @@ public class ArrayListImplementation<T> {
             System.out.println("Wrong index. Need 0 <= index <= size");
             return;
         }
-        if (isEmpty() || index == size) {
+        if (index == size) {
             add(value);
         } else {
             T[] newArr = (T[]) new Object[(arrayOfValues.length * 3) / 2 + 1];
@@ -77,7 +77,12 @@ public class ArrayListImplementation<T> {
     }
 
     public T get(int index) {
-        return arrayOfValues[index];
+        if (index >= 0 && index < size) {
+            return arrayOfValues[index];
+        } else {
+            System.out.println("Wrong index. Need index >= 0");
+        }
+        return null;
     }
 
     private void set(T value, int index) {

@@ -8,7 +8,7 @@ public class LinkedListImplementation <T> {
     private int size;
 
     LinkedListImplementation() {
-        this.size = 0;
+        size = 0;
     }
 
     private static class Node<T> {
@@ -88,24 +88,7 @@ public class LinkedListImplementation <T> {
     }
 
     T get(int index) {
-        if (index >= 0 && index < size) {
-            if (index <= (size / 2)) {
-                Node<T> currentNode = first;
-                for (int i = 0; i < index; i++) {
-                    currentNode = currentNode.next;
-                }
-                return currentNode.item;
-            } else {
-                Node<T> currentNode = last;
-                for (int i = size - 1; i > index; i--) {
-                    currentNode = currentNode.previous;
-                }
-                return currentNode.item;
-            }
-        } else {
-            System.out.println("Wrong index. Need 0 <= index < size");
-        }
-        return null;
+        return getNode(index).item;
     }
 
     private Node<T> getNode(int index) {

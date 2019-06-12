@@ -37,16 +37,7 @@ public class LinkedListImplementation <T> {
         size++;
     }
 
-    int size() {
-        if (first == null && last == null) {
-            size = 0;
-        } else {
-            size = 1;
-            while (first.next != null) {
-                first = first.next;
-                size++;
-            }
-        }
+    public int size() {
         return size;
     }
 
@@ -54,7 +45,7 @@ public class LinkedListImplementation <T> {
         return size() == 0;
     }
 
-    void add(T value) {
+    public void add(T value) {
         if (first == null) {
             linkFirst(value);
         } else {
@@ -62,7 +53,7 @@ public class LinkedListImplementation <T> {
         }
     }
 
-    void add(T value, int index) {
+    public void add(T value, int index) {
         if (index > size || index < 0) {
             System.out.println("Wrong index. Need 0 <= index <= size");
         } else if (index == size) {
@@ -81,13 +72,13 @@ public class LinkedListImplementation <T> {
         size++;
     }
 
-    void addAll(List<T> list) {
+    public void addAll(List<T> list) {
         for (T node: list) {
             linkLast(node);
         }
     }
 
-    T get(int index) {
+    public T get(int index) {
         return getNode(index).item;
     }
 
@@ -114,7 +105,7 @@ public class LinkedListImplementation <T> {
         getNode(index).item = value;
     }
 
-    T remove(int index) {
+    public T remove(int index) {
         T delItem;
         Node<T> currentNode = getNode(index);
         Node<T> preNode = currentNode.previous;

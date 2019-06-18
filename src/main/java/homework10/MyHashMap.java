@@ -85,17 +85,10 @@ public class MyHashMap<K, V> {
     }
 
     private Node[] resize(Node[] oldArrayOfNodes) {
-        Node[] newArrayOfNodes;
-        if (oldArrayOfNodes.length > 0) {
-            newArrayOfNodes = new Node[oldArrayOfNodes.length * 2];
-        } else {
-            newArrayOfNodes = new Node[DEFAULT_CAPACITY];
-        }
+        Node[] newArrayOfNodes = new Node[oldArrayOfNodes.length * 2];
         for (int i = 0; i < oldArrayOfNodes.length; i++) {
-            Node oldNode;
-            oldNode = oldArrayOfNodes[i];
-            if (oldArrayOfNodes[i] != null) {
-                oldArrayOfNodes[i] = null;
+            Node oldNode = oldArrayOfNodes[i];
+            if (oldNode != null) {
                 if (oldNode.next == null) {
                     newArrayOfNodes[oldNode.hash % newArrayOfNodes.length] = oldNode;
                 } else {

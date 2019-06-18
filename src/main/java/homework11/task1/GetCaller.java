@@ -7,14 +7,14 @@ public class GetCaller {
         StackTraceElement element;
         String className;
         String methodName;
-        String message = "";
-        if (stackTraceElements.length == 2) {
+        String message;
+        if (stackTraceElements.length < 3) {
             return null;
-        } else if (stackTraceElements.length >= 3) {
+        } else {
             element = stackTraceElements[2];
             className = element.getClassName();
             methodName = element.getMethodName();
-            message = className + " " + methodName;
+            message = className + "#" + methodName;
         }
         return message;
     }

@@ -5,20 +5,22 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
-public class CollectionMain {
+public class DeleteEvenNumbers {
     public static void main(String[] args) {
         List<Integer> listOfNumbers = new ArrayList<>();
-        List<Integer> reversedList = new ArrayList<>();
         Scanner scanner = new Scanner(System.in);
         while (scanner.hasNextInt()) {
             listOfNumbers.add(scanner.nextInt());
         }
-        for (int i = 1; i < listOfNumbers.size(); i += 2) {
-          reversedList.add(listOfNumbers.get(i));
+        for (int i = 0; i < listOfNumbers.size(); i++) {
+            if (i % 2 == 0) {
+                listOfNumbers.set(i, null);
+            }
         }
-        Collections.reverse(reversedList);
-        for (Integer number: reversedList) {
-            System.out.print(number + " ");
+        listOfNumbers.removeAll(Collections.singletonList(null));
+        Collections.reverse(listOfNumbers);
+        for (Integer number: listOfNumbers) {
+                System.out.print(number + " ");
         }
     }
 }

@@ -5,7 +5,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
-public class DeleteEvenNumbers {
+public class Main {
     public static void main(String[] args) {
         List<Integer> listOfNumbers = new ArrayList<>();
         Scanner scanner = new Scanner(System.in);

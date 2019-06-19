@@ -103,12 +103,12 @@ public class MyHashMap<K, V> {
     }
 
     private static class Node<K, V> implements Map.Entry<K, V> {
-        public K key;
-        public V value;
-        Node<K, V> next;
-        public int hash;
+        private K key;
+        private V value;
+        private Node<K, V> next;
+        private int hash;
 
-        public Node(K key, V value, Node<K, V> next, int hash) {
+        private Node(K key, V value, Node<K, V> next, int hash) {
             this.hash = hash;
             this.key = key;
             this.value = value;

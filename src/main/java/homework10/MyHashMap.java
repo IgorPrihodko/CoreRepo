@@ -10,26 +10,25 @@ public class MyHashMap<K, V> {
     private int size;
 
     public V get(K key) {
-        if (getNode(key)== null) {
-            return null;
+        Node<K, V> checkNode = getNode(key);
+        if (checkNode != null) {
+            return checkNode.value;
         }
-        return getNode(key).getValue();
+        return null;
     }
 
     protected V put(K key, V value) {
-        if ((arrayOfNodes == null || arrayOfNodes.length == 0)) {
+        if (size == 0) {
             arrayOfNodes = new Node[DEFAULT_CAPACITY];
         }
         if (size >= arrayOfNodes.length * LOAD_FACTOR) {
-            arrayOfNodes = resize(arrayOfNodes);
+            arrayOfNodes = resize();
         }
         Node<K, V> positionNode = arrayOfNodes[hash(key) % arrayOfNodes.length];
         if (positionNode == null) {
             arrayOfNodes[hash(key) % arrayOfNodes.length] = new Node<>(key, value, null, hash(key));
             size++;
-        } else if ((key == null && positionNode.getKey() == null) ||
-                (!key.equals(positionNode.getKey()) && hash(key) == positionNode.hash) ||
-                !key.equals(positionNode.getKey()) && !(hash(key) == positionNode.hash)) {
+        } else if (key == null && positionNode.getKey() == null || !key.equals(positionNode.getKey())) {
             if (positionNode.next == null) {
                 positionNode.next = new Node<>(key, value, null, hash(key));
                 size++;
@@ -84,10 +83,10 @@ public class MyHashMap<K, V> {
         return null;
     }
 
-    private Node[] resize(Node[] oldArrayOfNodes) {
-        Node[] newArrayOfNodes = new Node[oldArrayOfNodes.length * 2];
-        for (int i = 0; i < oldArrayOfNodes.length; i++) {
-            Node oldNode = oldArrayOfNodes[i];
+    private Node[] resize() {
+        Node[] newArrayOfNodes = new Node[this.arrayOfNodes.length * 2];
+        for (int i = 0; i < this.size; i++) {
+            Node oldNode = this.arrayOfNodes[i];
             if (oldNode != null) {
                 if (oldNode.next == null) {
                     newArrayOfNodes[oldNode.hash % newArrayOfNodes.length] = oldNode;
@@ -103,7 +102,7 @@ public class MyHashMap<K, V> {
         return newArrayOfNodes;
     }
 
-    public static class Node<K, V> implements Map.Entry<K, V> {
+    private static class Node<K, V> implements Map.Entry<K, V> {
         public K key;
         public V value;
         Node<K, V> next;

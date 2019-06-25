@@ -12,16 +12,31 @@ import java.util.stream.Stream;
 public class Main {
     private void countWords() {
         Scanner scanner = new Scanner(System.in);
-        Stream.of(scanner.nextLine().toLowerCase().split("[^\\p{L}\\p{Digit}_]+"))
-                .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()))
+        Stream.of(scanner
+                .nextLine()
+                .toLowerCase()
+                .split("[^\\p{L}\\p{Digit}_]+"))
+                .collect(Collectors
+                        .groupingBy(Function.identity(), Collectors.counting()))
                 .entrySet()
                 .stream()
                 .sorted(Map.Entry.comparingByValue())
-                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e2, LinkedHashMap::new))
+                .collect(Collectors
+                        .toMap(Map.Entry
+                                        ::getKey,
+                                Map.Entry
+                                        ::getValue,
+                                (e1, e2) -> e2,
+                                LinkedHashMap
+                                        ::new))
                 .entrySet()
                 .stream()
-                .sorted(Comparator.comparingLong((ToLongFunction<Map.Entry<String, Long>>) Map.Entry::getValue)
-                        .reversed().thenComparing(Map.Entry::getKey))
+                .sorted(Comparator
+                        .comparingLong((ToLongFunction<Map.Entry<String, Long>>) Map.Entry
+                                ::getValue)
+                        .reversed()
+                        .thenComparing(Map.Entry
+                                ::getKey))
                 .limit(10)
                 .collect(Collectors.toList())
                 .forEach(e -> System.out.println(e.getKey()));

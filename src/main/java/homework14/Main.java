@@ -22,21 +22,13 @@ public class Main {
                 .stream()
                 .sorted(Map.Entry.comparingByValue())
                 .collect(Collectors
-                        .toMap(Map.Entry
-                                        ::getKey,
-                                Map.Entry
-                                        ::getValue,
-                                (e1, e2) -> e2,
-                                LinkedHashMap
-                                        ::new))
+                        .toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e2, LinkedHashMap::new))
                 .entrySet()
                 .stream()
                 .sorted(Comparator
-                        .comparingLong((ToLongFunction<Map.Entry<String, Long>>) Map.Entry
-                                ::getValue)
+                        .comparingLong((ToLongFunction<Map.Entry<String, Long>>) Map.Entry::getValue)
                         .reversed()
-                        .thenComparing(Map.Entry
-                                ::getKey))
+                        .thenComparing(Map.Entry::getKey))
                 .limit(10)
                 .collect(Collectors.toList())
                 .forEach(e -> System.out.println(e.getKey()));

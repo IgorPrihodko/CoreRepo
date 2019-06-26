@@ -2,22 +2,20 @@ package homework15.dao;
 
 import homework15.db.Storage;
 import homework15.lib.Dao;
-import homework15.model.Bet;
 
 import java.util.List;
 
-//НАШ КЛАСС ДЛЯ РАБОТЫ С БАЗОЙ ДАННЫХ И ТАБЛИЦОЙ СТАВОК
 @Dao
-public class BetDaoImpl implements BetDao {
+public class BetDaoImpl implements DaoInterface {
 
     @Override
-    public void add(Bet bet) {
-        Storage.bets.add(bet);
+    public void add(Object o) {
+        Storage.BETS.add(o);
     }
 
     @Override
-    public List<Bet> getAll() {
-        return Storage.bets;
+    public List<Object> getAll() {
+        return Storage.BETS;
     }
 
 }

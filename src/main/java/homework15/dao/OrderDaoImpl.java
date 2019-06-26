@@ -2,19 +2,18 @@ package homework15.dao;
 
 import homework15.db.Storage;
 import homework15.lib.Dao;
-import homework15.model.Order;
 
 import java.util.List;
 @Dao
-public class OrderDaoImpl implements OrderDao {
+public class OrderDaoImpl implements DaoInterface {
 
     @Override
-    public void add(Order order) {
-        Storage.orders.add(order);
+    public void add(Object o) {
+        Storage.ORDERS.add(o);
     }
 
     @Override
-    public List<Order> getAll() {
-        return Storage.orders;
+    public List<Object> getAll() {
+        return Storage.ORDERS;
     }
 }

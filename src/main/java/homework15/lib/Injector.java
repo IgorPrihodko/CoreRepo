@@ -1,9 +1,8 @@
 package homework15.lib;
 
 import homework15.controller.ConsoleHandler;
-import homework15.dao.BetDao;
 import homework15.dao.BetDaoImpl;
-import homework15.dao.OrderDao;
+import homework15.dao.DaoInterface;
 import homework15.dao.OrderDaoImpl;
 import homework15.factory.BetDaoFactory;
 import homework15.factory.OrderDaoFactory;
@@ -20,7 +19,7 @@ public class Injector {
         if (betDaoImplClass.getDeclaredAnnotation(Dao.class) != null) {
             Field[] consoleHandlerFields = consoleHandlerClass.getDeclaredFields();
             for (Field field : consoleHandlerFields) {
-                if (field.getDeclaredAnnotation(Inject.class) != null && field.getType().equals(BetDao.class)) {
+                if (field.getDeclaredAnnotation(Inject.class) != null && field.getType().equals(DaoInterface.class)) {
                     field.setAccessible(true);
                     field.set(null, BetDaoFactory.getBetDao());
                 }
@@ -30,7 +29,7 @@ public class Injector {
         if (orderDaoImplClass.getDeclaredAnnotation(Dao.class) != null) {
             Field[] consoleHandlerFields = consoleHandlerClass.getDeclaredFields();
             for (Field field : consoleHandlerFields) {
-                if (field.getDeclaredAnnotation(Inject.class) != null && field.getType().equals(OrderDao.class)) {
+                if (field.getDeclaredAnnotation(Inject.class) != null && field.getType().equals(DaoInterface.class)) {
                     field.setAccessible(true);
                     field.set(null, OrderDaoFactory.getInstance());
                 }

@@ -1,13 +1,13 @@
 package homework15.factory;
 
-import homework15.dao.OrderDao;
+import homework15.dao.DaoInterface;
 import homework15.dao.OrderDaoImpl;
 
 public class OrderDaoFactory {
 
-    private static OrderDao instance;
+    private static DaoInterface instance;
 
-    public static OrderDao getInstance(){
+    public static DaoInterface getInstance(){
         if (instance == null) {
             instance = new OrderDaoImpl();
         }

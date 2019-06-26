@@ -1,7 +1,6 @@
 package homework15.controller;
 
-import homework15.dao.BetDao;
-import homework15.dao.OrderDao;
+import homework15.dao.DaoInterface;
 import homework15.lib.Inject;
 import homework15.model.Bet;
 import homework15.model.Order;
@@ -11,9 +10,9 @@ import java.util.Scanner;
 public class ConsoleHandler {
 
     @Inject
-    private static OrderDao orderDao;
+    private static DaoInterface orderDao;
     @Inject
-    private static BetDao betDao;
+    private static DaoInterface betDao;
 
     public static void handleOrder() {
         try(Scanner scanner = new Scanner(System.in)) {

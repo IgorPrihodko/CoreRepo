@@ -19,7 +19,8 @@ public class Injector {
         if (betDaoImplClass.getDeclaredAnnotation(Dao.class) != null) {
             Field[] consoleHandlerFields = consoleHandlerClass.getDeclaredFields();
             for (Field field : consoleHandlerFields) {
-                if (field.getDeclaredAnnotation(Inject.class) != null && field.getType().equals(DaoInterface.class)) {
+                if (field.getDeclaredAnnotation(Inject.class) != null &&
+                        field.getType().equals(DaoInterface.class)) {
                     field.setAccessible(true);
                     field.set(null, BetDaoFactory.getBetDao());
                 }
@@ -29,7 +30,8 @@ public class Injector {
         if (orderDaoImplClass.getDeclaredAnnotation(Dao.class) != null) {
             Field[] consoleHandlerFields = consoleHandlerClass.getDeclaredFields();
             for (Field field : consoleHandlerFields) {
-                if (field.getDeclaredAnnotation(Inject.class) != null && field.getType().equals(DaoInterface.class)) {
+                if (field.getDeclaredAnnotation(Inject.class) != null &&
+                        field.getType().equals(DaoInterface.class)) {
                     field.setAccessible(true);
                     field.set(null, OrderDaoFactory.getInstance());
                 }

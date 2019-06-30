@@ -14,9 +14,7 @@ public class MinMax {
         if (list.size() == 0) {
             minMaxConsumer.accept(null, null);
         } else {
-            T max = list.stream().max(order).get();
-            T min = list.stream().min(order).get();
-            minMaxConsumer.accept(min, max);
+            minMaxConsumer.accept(list.get(0), list.get(list.size() - 1));
         }
     }
 }
